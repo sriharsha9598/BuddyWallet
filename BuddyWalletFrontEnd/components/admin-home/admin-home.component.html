@@ -1,0 +1,83 @@
+<div class="offset-lg-1 offset-md-1">
+    <div class="card col-lg-11 col-md-11" style="box-shadow: 0 2px 6px 0 grey;margin-bottom: 2px;height: 688px;">
+        <br>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 text-right"style="margin-top: 5px">
+                <button class="btn btn-success" style="font-size: x-large;">Users</button>
+                <button class="btn btn-outline-success" style="font-size: x-large;" (click)="goToMailsPage()">Mails</button>
+            </div>
+
+            <!-- Heading or Title -->
+            <div class="col-lg-8 col-md-8">
+                <h1 class="text-center text-primary col-lg-12">User Details</h1>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="col-lg-2 col-md-2 text-right" style="margin-top: 5px">
+                <button class="btn btn-danger" (click)="logOut()">Log out</button>&nbsp;&nbsp;
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+
+            <!-- Table of all Existing users -->
+            <div class="card col-lg-12 col-md-12 text-center" 
+                style="height: 500px;max-height: 500px;overflow-y: auto;">
+                <table class="table table-stripped table-responsive table-hover text-center">
+                    <thead>
+                        <tr style="background-color: lightgray">
+                            <th>Wallet Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Mobile Number</th>
+                            <th>Email Id</th>
+                            <th>Balance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- Search boxes to filter by account number, name, mobile number, emailId -->
+                        <tr>
+                            <td>
+                                <input type="number" class="inpBox text-center" placeholder="Search by Wallet Id"
+                                    [(ngModel)]="searchText[0]" style="width: 180px">
+                            </td>
+                            <td>
+                                <input type="text" class="inpBox text-center" placeholder="Search by First Name"
+                                    [(ngModel)]="searchText[1]" style="width: 180px">
+                            </td>
+                            <td>
+                                <input type="text" class="inpBox text-center" placeholder="Search by Last Name"
+                                    [(ngModel)]="searchText[2]" style="width: 180px">
+                            </td>
+                            <td>
+                                <input type="number" class="inpBox text-center" placeholder="Search by MobileNo"
+                                    [(ngModel)]="searchText[3]" style="width: 180px">
+                            </td>
+                            <td>
+                                <input type="text" class="inpBox text-center" placeholder="Search by Email Id"
+                                    [(ngModel)]="searchText[4]" style="width:180px">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr *ngFor="let obj of users | search:searchText ">
+                            <td>{{obj.accNum}}</td>
+                            <td>{{obj.firstName}}</td>
+                            <td>{{obj.lastName}}</td>
+                            <td>{{obj.phoneNum}}</td>
+                            <td>{{obj.emailId}}</td>
+                            <td>{{obj.balance}}</td>
+                            <td>
+                                <button class=" btn btn-warning" style="height: 32px;"
+                                    (click)="editUser(obj.accNum)">View</button>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

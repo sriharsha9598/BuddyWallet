@@ -1,0 +1,148 @@
+<div class="bgCard" style="background-image: url(assets/images/depositBg.jpg);background-size: cover;height: 83%"
+    *ngIf="!result">
+
+    <br>
+    <div class="row">
+        <div class="offset-lg-4 offset-md-4"></div>
+        <div class="col-lg-5 col-md-5" style="border-radius: 25px;" *ngIf="!input && !result">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="contentCard">
+                <table class="text-center">
+                    <col width="500">
+                    <col width="500">
+                    <tr>
+                        <td colspan="2" class="text-center font-weight-bold text-dark">
+                            <div style="margin-top: 5px;">&nbsp;<span class="text-center text-danger" *ngIf="0>=amount && amount!=null">enter a valid amount!!</span></div>
+                            <h2 style="font-family: 'Segoe UI'; font-weight: 600;text-shadow: 1px 2px lightgrey">Amount
+                                :
+                                &nbsp;&nbsp;
+                                <span style="font-size: medium;font-weight: normal;position: relative;"><input class="inpBox" type="number"
+                                        [(ngModel)]="amount" style="width: 275px;margin-top: 5px;"
+                                        placeholder="enter amount to be deposited &nbsp;&nbsp;">
+                                        
+                                    <!-- when amount is less than or equal to 0, then error will be displayed -->
+                                    <i *ngIf="0>=amount && amount!=null" style="position: relative;right: 47px;top: -3px;">&nbsp;<img src="assets/images/errorSymbol.png"
+                                            style="width: 25px;height: 25px"></i>
+                                </span></h2>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <!-- suggestions for amount -->
+                        <td colspan="2" class="text-center" *ngIf="!add">
+                            <button class="btn btn-outline-dark"
+                                style="box-shadow: 0 1px 2px 2px lightgrey;font-weight: 525"
+                                (click)="add100()">+100</button>&nbsp;&nbsp;
+                            <button class="btn btn-outline-dark"
+                                style="box-shadow: 0 1px 2px 2px lightgrey;font-weight: 525"
+                                (click)="add250()">+250</button>&nbsp;&nbsp;
+                            <button class="btn btn-outline-dark"
+                                style="box-shadow: 0 1px 2px 2px lightgrey;font-weight: 525"
+                                (click)="add500()">+500</button>&nbsp;&nbsp;
+                            <button class="btn btn-outline-dark"
+                                style="box-shadow: 0 1px 2px 2px lightgrey;font-weight: 525"
+                                (click)="add1000()">+1000</button>&nbsp;&nbsp;
+                            <button class="btn btn-outline-dark"
+                                style="box-shadow: 0 1px 2px 2px lightgrey;font-weight: 525"
+                                (click)="add2000()">+2000</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!add">
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <!-- Until user enters a valid amount, 'add' button is hidden -->
+                            <div *ngIf="amount>0">
+                                <button class="buttonAnimated" (click)="submit()">
+                                    <span>Add</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="offset-lg-3 offset-md-3 col-lg-7 col-md-7" style="border-radius: 25px;" *ngIf="input && !result">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="contentCard">
+                <table class="text-center">
+                    <col width="500">
+                    <col width="500">
+                    <tr>
+                        <td colspan="2" class="text-center font-weight-bold text-dark">
+                            <div class="text-danger text-center" style="margin-top: 5px;">{{statusMsg}}&nbsp;</div>
+                            <h2 style="font-family: 'Segoe UI'; font-weight: 600;text-shadow: 1px 2px lightgrey">
+                                Transaction Password :
+                                &nbsp;
+                                <span style="font-weight: normal;font-size: medium;">
+                                    <input class="inpBox" type="password" #tranPassword id="tranPasswordInputBox"
+                                        style="width: 275px;margin-top: 2px;position: relative;"
+                                        placeholder="enter the Transaction Password &nbsp;&nbsp;">
+                                    <!-- When user enters an incorrect transaction password -->
+                                    <i *ngIf="wrong" style="position: relative;right: 35px;top: -3px;">&nbsp;<img src="assets/images/errorSymbol.png"
+                                            style="width: 25px;height: 25px"></i>
+                                    
+                                </span></h2>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button class="buttonAnimated" id="verifyButton" (click)="deposit(tranPassword.value)">
+                                <span>Verify</span>
+                            </button>
+                            <i *ngIf="loading" style="position: relative">&nbsp;<img src="assets/images/loading2.gif"
+                                style="width: 35px;height: 35px"></i>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="text-center col-lg-12 col-md-12" *ngIf="input && result" style="margin-top: 50px;">
+    <br>
+    <br>
+    <img src="/assets/images/successSymbol.gif" height="125" width="125" />
+    <br>
+    <h4 class="text-success">
+        {{statusMsg}}
+    </h4>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="addMore()">
+        <span>Add More Money</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">No, thanks!</button>
+</div>
+<div class="text-center col-lg-12 col-md-12" *ngIf="!input && result" style="margin-top: 50px;">
+    <br>
+    <br>
+    <img src="/assets/images/faile.gif" height="100" width="125" />
+    <br>
+    <h2 class="text-danger">
+        Transaction Failed!!
+    </h2>
+    <h6 class="text-danger">
+        Due to {{statusMsg}}
+    </h6>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="addMore()">
+        <span>Try Again</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">Back to Home</button>
+</div>

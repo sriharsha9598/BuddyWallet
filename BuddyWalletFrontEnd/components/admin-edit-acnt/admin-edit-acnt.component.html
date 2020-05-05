@@ -1,0 +1,256 @@
+<div class="offset-lg-1 offset-md-1 col-lg-10 col-md-10"
+    style="height: 688px;margin-bottom: 2px;box-shadow: 0 2px 6px 0 grey;">
+    <div class="row col-lg-12 col-md-12">
+
+        <!-- Back Button -->
+        <div class="col-lg-2 col-md-2 text-center" style="margin-top: 25px">
+            <button class="btn btn-secondary" (click)="back()">Back</button>
+        </div>
+
+        <!-- Heaading or Title -->
+        <div class="col-lg-8 col-md-8">
+            <h1 style="text-shadow:2px 1px lightgrey;margin-top: 20px;font-style: italic;"
+                class="text-center text-primary">Edit
+                User
+            </h1>
+            <hr class="line text-primary" id="hr">
+        </div>
+
+        <!-- Logout Button -->
+        <div class="col-lg-2 col-md-2 text-center" style="margin-top: 25px">
+            <button class="btn btn-danger" (click)="logOut()">Log out</button>&nbsp;&nbsp;
+        </div>
+    </div>
+
+    <!-- Block/Unblock user Button -->
+    <div class="text-center"><button class="btn btn-danger" (click)="block()" *ngIf="userAccount.blocked==0">Block User</button>
+        <button class="btn btn-danger" (click)="unBlock()" *ngIf="userAccount.blocked==1">UNBLOCK</button></div>
+    <br>
+
+    <!-- Account Details -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6" style="border-right: 1px solid darkgrey;">
+            <form [formGroup]="editUserForm" (ngSubmit)="update()" (click)="showButtons()">
+                <div class="form-group row" style="justify-content: center;margin-bottom: 30px;">
+                    <label for="accNum" class="text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Wallet ID &nbsp;:&nbsp;</h5>
+                    </label>
+                    <input type="number" class="form-control" formControlName="accNum" style="width: 150px;"
+                        disabled />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="balance" class="text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Balance &nbsp;:&nbsp;&#8377;&nbsp;
+                        </h5>
+                    </label>
+                    <input type="number" class="form-control" formControlName="balance" style="width: 100px;"
+                        disabled />
+                </div>
+                <div class="form-group row" style="justify-content: center;margin-bottom: 30px;">
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"
+                        style="width: 175px;" />&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control" placeholder="Middle Name" formControlName="middleName"
+                        style="width: 175px;" />&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"
+                        style="width: 175px;" />
+                    <div class="col-lg-12 col-md-12 row">
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="editUserForm.controls.firstName.errors" class="text-danger text-center">
+                                <div *ngIf="editUserForm.controls.firstName.errors.required">
+                                    Your First Name is required..!!
+                                </div>
+                                <div *ngIf="editUserForm.controls.firstName.errors.pattern">
+                                    Name must start with a capital letter and contain characters only!!
+                                </div>
+                                <div
+                                    *ngIf="editUserForm.controls.firstName.errors && editUserForm.controls.firstName.value">
+                                    Enter a Valid First Name!!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="editUserForm.controls.middleName.errors" class="text-danger text-center">
+                                Enter a valid Middle Name..!!
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="editUserForm.controls.lastName.errors" class="text-danger text-center">
+                                <div *ngIf="editUserForm.controls.lastName.errors.required">
+                                    Your Last Name is required..!!
+                                </div>
+                                <div *ngIf="editUserForm.controls.lastName.errors.pattern">
+                                    Name must start with a capital letter and contain characters only!!
+                                </div>
+                                <div
+                                    *ngIf="editUserForm.controls.lastName.errors && editUserForm.controls.lastName.value">
+                                    Enter a Valid Last Name!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="city" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Your City
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="text" class="form-control" placeholder="Your City" formControlName="city"
+                            required />
+                        <div *ngIf="editUserForm.controls.city.errors" class="text-danger">
+                            <div *ngIf="editUserForm.controls.city.errors.required">
+                                Your City is required..!!
+                            </div>
+                            <div *ngIf="editUserForm.controls.city.errors.pattern">
+                                City must start with a capital letter and contain characters only!!
+                            </div>
+                            <div *ngIf="editUserForm.controls.city.errors && editUserForm.controls.city.value">
+                                Enter a Valid Place!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phoneNum" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Mobile No:
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="number" class="form-control" placeholder="Your Mobile Number"
+                            formControlName="phoneNum" />
+                        <div *ngIf="editUserForm.controls.phoneNum.errors" class="text-danger">
+                            <div *ngIf="editUserForm.controls.phoneNum.errors.required">
+                                Mobile Number is required..!!
+                            </div>
+                            <div *ngIf="editUserForm.controls.phoneNum.errors.pattern">
+                                Enter a Valid Mobile Number of 10digits!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="emailId" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Your Email Id
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="email" class="form-control" placeholder="Your Email Id"
+                            formControlName="emailId" />
+                        <div *ngIf="editUserForm.controls.emailId.errors" class="text-danger">
+                            <div *ngIf="editUserForm.controls.emailId.errors.required">
+                                Email is required..!!
+                            </div>
+                            <div *ngIf="editUserForm.controls.emailId.errors.email">
+                                Enter a Valid Email Address!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="userName" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">User Name
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="email" class="form-control" placeholder="User Name" formControlName="userName" />
+                        <div *ngIf="editUserForm.controls.userName.errors" class="text-danger">
+                            <div *ngIf="editUserForm.controls.userName.errors" class="text-danger">
+                                <div *ngIf="editUserForm.controls.userName.errors.required">
+                                    User Name is required..!!
+                                </div>
+                                <div *ngIf="editUserForm.controls.userName.errors.pattern">
+                                    User name must contain atleast an alphabet, a digit and length must be atleast 8
+                                    characters!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" formControlName="password" hidden>
+                <input type="number" formControlName="blocked" hidden>
+                <input type="text" formControlName="tranPassword" hidden>
+                
+                
+                <!-- When user name already exists, error message is displayed and will be automatically disappear when username is changed  -->
+                
+                <div class="text-danger" *ngIf="editUserForm.controls.userName.value==oldUserName">{{statusMsg}}
+                    <i class="col-lg-1" style="position: relative;right: 60px;top: 3px;"
+                        *ngIf="editUserForm.controls.userName.value==oldUserName"><img
+                            src="assets/images/errorSymbol.png" style="width: 25px;height: 25px"></i>
+                </div>
+                <div class="text-center"><button class="btn btn-success" style="visibility: hidden;" id="saveBtn"
+                        type="submit" (click)="save()">SAVE</button>&nbsp;
+                    <button class="btn btn-outline-dark" style="visibility: hidden;" id="cancelBtn"
+                        (click)="cancel()">cancel</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- e-statement -->
+        <div class="col-lg-6 col-md-6">
+            <div class="text-center" style="font-size: large;font-family:Trebuchet MS;">
+                From : &nbsp;<input type="date" class="inpBox text-center" [(ngModel)]="fromDate"
+                    style="font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                To : &nbsp;<input type="date" class="inpBox text-center" [(ngModel)]="toDate"
+                    style="font-size: medium;">
+                <hr class="line">
+            </div>
+            <div class="scroll">
+                <table class="table text-center" *ngIf="!fromDate && !toDate"
+                    style="font-size: large;font-family: Trebuchet MS;">
+                    <tr class="text-dark">
+                        <th>Date</th>
+                        <th>Transaction</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                    </tr>
+                    <tr *ngFor="let obj of transactions">
+                        <td>{{obj.transDate}}</td>
+                        <td>{{obj.transaction}}</td>
+                        <td *ngIf="obj.amount>0" class="text-success" style="font-weight: bold ;">+{{obj.amount}}</td>
+                        <td *ngIf="0>obj.amount" class="text-danger" style="font-weight: bold ;">{{obj.amount}}</td>
+                        <td *ngIf="obj.amount==0"></td>
+                        <td class="font-weight-bold">{{obj.balance}}</td>
+                    </tr>
+                    <tr *ngIf="!transactions || 1>=transactions.length">
+                        <th colspan="7">
+                            <p class="text-center text-danger">
+                                Sorry, No Transactions Available ..!
+                            </p>
+                        </th>
+                    </tr>
+                </table>
+                <table class="table" *ngIf="fromDate || toDate">
+                    <tr *ngFor="let obj of transactions">
+                        <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.transDate}}</td>
+                        <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.transaction}}</td>
+                        <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate && obj.amount>0"
+                            class="text-success" style="font-weight: bold ;">
+                            +{{obj.amount}}</td>
+                        <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate && 0>obj.amount" class="text-danger"
+                            style="font-weight: bold ;">
+                            {{obj.amount}}</td>
+                    </tr>
+                    <tr *ngIf="!transactions || transactions.length==0">
+                        <th colspan="7">
+                            <p class="text-center text-danger">
+                                Sorry, No Transactions Available ..!
+                            </p>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

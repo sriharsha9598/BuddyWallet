@@ -1,0 +1,357 @@
+.designedButton {
+    margin-top: 10px;
+    border-width: 2px; 
+    border-color: white; 
+    border-radius: 40px 10px 40px 10px ;
+    color:whitesmoke;
+    background-color:black;
+    font-size: 23px;
+    width: 250px;
+    text-align: center;
+    padding: 8px; 
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+    outline: none;
+} 
+    
+.designedButton:hover{
+    color:black;
+    background-color:goldenrod;
+    font-family: cursive;
+    transition: 0.7s;
+}
+
+.actived{
+    margin-top: 10px;
+    border-width: 2px; 
+    border-color: white; 
+    font-size: 23px;
+    text-align: center;
+    width: 250px;
+    padding: 8px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 2s;
+    border-radius: 40px 10px;
+    color:black;
+    margin-left: 20px;
+    background-color:goldenrod;
+    font-family: cursive;
+    border-width: 2px; 
+    border-color: white;
+}
+        
+
+.card1 {
+    overflow-x: hidden;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-width: 0px;
+    border-color: lightgrey;
+    transition: 0.5s ease;
+}
+ 
+.card1:hover {
+    border-width: 2px;
+    height: 100%;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
+}
+
+.leftCard {
+    max-width: 300px;
+    margin-top: 3%;
+    height: 600px;
+    width: 100%;
+    position: fixed;
+    z-index:1;
+    top:150px;
+    left:0;
+    background-color: rgb(20,20,20);
+    overflow-x:hidden;
+    border-radius: 0 25px 25px 0;
+    transition: 0.5s ease;
+}
+ 
+.leftCard:hover {
+    box-shadow: 0 5px 7px 7px rgba(0,0,0,0.4);
+}
+    
+img{
+    height: 475px;
+    width: 250px;
+}
+
+.leftNavButton{
+    position: fixed;
+    outline: none;
+}
+
+.rightNavButton{
+    position: fixed;
+    outline: none;
+}
+
+.leftNavButton a {
+    margin-top: 5%;
+    position: fixed;
+    left: -150px;
+    transition: 0.3s;
+    padding: 8px;
+    width: 200px;
+    text-align: right;
+    font-size: 30px;
+    color: rgb(20,20,20);
+    border-radius: 0 5px 5px 0;
+    outline: none;
+  }
+
+  .leftNavButton a:hover {
+    background-color: black;
+    color: white;
+    left: -10px;
+    transition: 0.3s;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 4px 4px rgba(20,20,20,0.5);
+  }
+
+  .leftNavButton i{
+      font-size: 40px;
+  }
+  #leftNavBtn{
+      position: fixed;
+      width: 65px;
+      height: 65px;
+      margin-top: 60px;
+      left:0
+  }
+  #leftNavBtn:hover{
+      opacity: 0.6;
+  }
+
+  .head {
+    top: 20px;
+    background-color: rgb(20,20,20);
+    }
+
+    .rightCard {
+        margin-top: 3%;
+        height: 600px;
+        width: 100%;
+        max-width: 300px;
+        background-color: rgb(20,20,20);
+        overflow-x:hidden;
+        border-radius: 25px 0 0 25px;
+        transition: 0.5s ease;
+        right: 0;
+        position: fixed;
+        top:150px;
+        z-index:1;
+        
+    }
+     
+    .rightCard:hover {
+        box-shadow: 0 5px 7px 7px rgba(0,0,0,0.4);
+    }
+
+    .rightNavButton1 {
+        margin-top: 5%;
+        position: fixed;
+        right:-180px;
+        transition: 0.3s;
+        width: 250px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 20px;
+        color: rgb(20,20,20);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+
+      .rightNavButton1 i{
+          background-color: white;
+          margin-left: 10px;
+          margin-top: 5px   ;
+          font-size: 40px;
+          position: absolute;
+      }
+    
+      .rightNavButton1:hover {
+        
+        right: -60px;
+        transition: 0.3s;
+      }
+
+      .inpBox{
+        border: black;
+        border-radius: 10px;
+        height: 50px;
+        font-family: 'Segoe UI';
+        outline: none;
+    }
+
+      .inpBox:hover{
+          
+        border: black;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
+        height: 50px;
+        font-family: 'Segoe UI';
+      }
+
+    .rightNavButton2 a {
+        margin-top: 15%;
+        position: fixed;
+        right:-181px;
+        transition: 0.3s;
+        padding: 6px;
+        width: 225px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        background-color: rgb(20,20,20);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+    
+      .rightNavButton2 a:hover {
+        
+        right: -80px;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: -4px 4px rgba(20,20,20,0.5);
+      }
+
+      .rightNavButton3 a {
+        margin-top: 19%;
+        position: fixed;
+        right:-181px;
+        transition: 0.3s;
+        padding: 6px;
+        width: 225px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        background-color: rgb(20,20,20);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+    
+      .rightNavButton3 a:hover {
+        
+        right: -85px;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: -4px 4px rgba(20,20,20,0.5);
+      }
+
+      .rightNavButton4 a {
+        margin-top: 23%;
+        position: fixed;
+        right:-181px;
+        transition: 0.3s;
+        padding: 6px;
+        width: 225px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        background-color: rgb(20,20,20);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+    
+      .rightNavButton4 a:hover {
+        
+        right: -35px;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: -4px 4px rgba(20,20,20,0.5);
+      }
+      .rightNavButton5 a {
+        margin-top: 27%;
+        position: fixed;
+        right:-181px;
+        transition: 0.3s;
+        padding: 6px;
+        width: 225px;
+        text-align: left;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        background-color: rgb(20,20,20);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+    
+      .rightNavButton5 a:hover {
+        
+        right: -75px;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: -4px 4px rgba(20,20,20,0.5);
+      }
+      
+
+    hr.line{
+        text-shadow:2px 1px lightgrey;
+        border: 1px solid;
+    }
+    
+    .lineExtended{
+        text-shadow:2px 1px lightgrey;
+        border: 1px solid;
+        width: 150%;
+        margin-right: 25%;
+        margin-left: -25%;
+    }
+
+    #logoutBtn{
+        height: 80px;
+        width: 70px;
+    }
+
+    #logoutBtn:hover{
+        opacity: 0.75;
+    }
+
+    #logoutButn{
+        height: 80px;
+        width: 70px;
+    }
+
+    #logoutButn:hover{
+        opacity: 0.75;
+    }
+
+    #homeBtn{
+        height: 80px;
+        width: 70px;
+    }
+
+    #homeBtn:hover{
+        opacity: 0.75;
+    }
+
+    #fundTransferSymb{
+        height: 20px;
+        width: 20px;
+    }
+
+    #fundTransferSymb:hover{
+        color: black;
+    }
+
+    .disappear{
+        display: none;
+    }
+
+    .appear{
+        display: inline-block;
+    }
+
+    

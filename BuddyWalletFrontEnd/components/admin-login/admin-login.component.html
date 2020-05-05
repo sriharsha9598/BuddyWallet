@@ -1,0 +1,47 @@
+<div class="card col-lg-3">
+        <br>
+        <h1 class="cardTitle">Admin Login</h1>
+        <hr>
+        <br>
+
+        <!-- Admin Login Form -->
+        
+        <form [formGroup]="adminLoginForm" (ngSubmit)="login()">
+            <div class="text-danger text-center" style="font-weight: bold;">{{statusMsg}}</div>
+            <div class="form-group">
+                <label for="adminName" class="col-lg-5"><h5 style="font-family: 'Segoe UI'; font-weight: 600; color: black">Admin Name :</h5></label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control " formControlName="adminName" placeholder="Enter Admin Name">
+                    <div class="text-danger" *ngIf="submitted && adminLoginForm.controls.adminName.errors">
+                        <div *ngIf="adminLoginForm.controls.adminName.errors.required">
+                            Admin Name is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-lg-5 font-weight-bold"><h5 style="font-family: 'Segoe UI'; font-weight: 600; color: black">Password :</h5></label>
+                <br>
+                <div class="col-lg-12">
+                    <input type="password" class="form-control " formControlName="password" placeholder="Enter Password">
+                    <div class="text-danger" *ngIf="submitted && adminLoginForm.controls.password.errors">
+                        <div *ngIf="adminLoginForm.controls.password.errors.required">
+                            Password is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="buttonAnimated" type="submit" style="color: goldenrod; background-color: black" (click)="login()">
+                    <span>Login</span>
+                </button>
+                <br>
+            </div>
+            <div class="text-center">
+                <hr>
+                <button class="bgButton" (click)="signUp()">New User? SignUp</button>&nbsp;
+                <button class="bgButton" (click)="userLogin()">User Login</button>
+                <hr>
+            </div>
+        </form>
+    </div>

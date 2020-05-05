@@ -1,0 +1,332 @@
+<div class="row" style="height: 575px;">
+    <div class="card col-lg-7">
+        <br>
+        <h1 class="cardTitle">User Sign Up</h1>
+        <hr>
+        <div *ngIf="!input && !result">
+            <!-- signUp Form -->
+            <form [formGroup]="signUpForm" (ngSubmit)="next()">
+                <!-- <div class="form-group row">
+                    <label for="name" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Your Full Name
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="text" class="form-control" placeholder="Your Name" formControlName="name" />
+                        <div *ngIf="submitted1 && signUpForm.controls.name.errors" class="text-danger">
+                            <div *ngIf="signUpForm.controls.name.errors.required">
+                                Your Name is required..!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.name.errors.pattern">
+                                Name must start with a capital letter and contain characters only!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.name.errors">
+                                Enter a Valid Name!!
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="form-group row" style="justify-content: center;margin-bottom: 30px;">
+                    <input type="text" class="form-control" placeholder="Your First Name" formControlName="firstName"
+                        style="width: 250px;" />&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control" placeholder="Middle Name" formControlName="middleName"
+                        style="width: 250px;" />&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control" placeholder="Your Last Name" formControlName="lastName"
+                        style="width: 250px;" />
+                    <div class="col-lg-12 col-md-12 row">
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="submitted1 && signUpForm.controls.firstName.errors" class="text-danger text-center">
+                                <div *ngIf="signUpForm.controls.firstName.errors.required">
+                                    Your First Name is required..!!
+                                </div>
+                                <div *ngIf="signUpForm.controls.firstName.errors.pattern">
+                                    Name must start with a capital letter and contain characters only!!
+                                </div>
+                                <div *ngIf="signUpForm.controls.firstName.errors && signUpForm.controls.firstName.value">
+                                    Enter a Valid First Name!!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="submitted1 && signUpForm.controls.middleName.errors" class="text-danger text-center">
+                                Enter a valid Middle Name..!!
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4" style="justify-content: center;">
+                            <div *ngIf="submitted1 && signUpForm.controls.lastName.errors" class="text-danger text-center">
+                                <div *ngIf="signUpForm.controls.lastName.errors.required">
+                                    Your Last Name is required..!!
+                                </div>
+                                <div *ngIf="signUpForm.controls.lastName.errors.pattern">
+                                    Name must start with a capital letter and contain characters only!!
+                                </div>
+                                <div *ngIf="signUpForm.controls.lastName.errors && signUpForm.controls.lastName.value">
+                                    Enter a Valid Last Name!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="city" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Your City
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="text" class="form-control" placeholder="Your City" formControlName="city"
+                            required />
+                        <div *ngIf="submitted1 && signUpForm.controls.city.errors" class="text-danger">
+                            <div *ngIf="signUpForm.controls.city.errors.required">
+                                Your City is required..!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.city.errors.pattern">
+                                City must start with a capital letter and contain characters only!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.city.errors && signUpForm.controls.city.value">
+                                Enter a Valid Place!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phoneNum" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Mobile Number
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="number" class="form-control" placeholder="Your Mobile Number"
+                            formControlName="phoneNum" />
+                        <div *ngIf="submitted1 && signUpForm.controls.phoneNum.errors" class="text-danger">
+                            <div *ngIf="signUpForm.controls.phoneNum.errors.required">
+                                Mobile Number is required..!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.phoneNum.errors.pattern">
+                                Enter a Valid Mobile Number of 10digits!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="emailId" class="offset-lg-1 col-lg-3 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Your Email Id
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <input type="email" class="form-control" placeholder="Your Email Id"
+                            formControlName="emailId" />
+                        <div *ngIf="submitted1 && signUpForm.controls.emailId.errors" class="text-danger">
+                            <div *ngIf="signUpForm.controls.emailId.errors.required">
+                                Email is required..!!
+                            </div>
+                            <div *ngIf="signUpForm.controls.emailId.errors.email">
+                                Enter a Valid Email Address!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="buttonAnimated" type="submit" style="background-color: goldenrod; color: black">
+                        <span>next</span>
+                    </button>
+                    <br>
+                </div>
+            </form>
+            <div class="text-center" *ngIf="!submitted1">
+                <hr>
+                <button class="bgButton" (click)="login()">Have an Account already? Login </button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- sign Up Form2 -->
+        <div *ngIf="input && !result">
+            <form [formGroup]="signUpForm2" (ngSubmit)="signUp()">
+                <div class="form-group row">
+                    <label for="userName" class="offset-lg-1 col-lg-5 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600;position: relative;">Set an User Name
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-4 text-left">
+                        <input type="text" class="form-control" placeholder="Set an User Name"
+                            formControlName="userName" />
+                        <div *ngIf="submitted2 && signUpForm2.controls.userName.errors" class="text-danger">
+                            <div *ngIf="signUpForm2.controls.userName.errors.required">
+                                User Name is required..!!
+                            </div>
+                            <div *ngIf="signUpForm2.controls.userName.errors.pattern">
+                                User name must contain atleast an alphabet, a digit and length must be atleast 8
+                                characters!!
+                            </div>
+                        </div>
+                        <!-- When user name already exists, error message is displayed and will be automatically disappear when username is changed  -->
+                        <div class="text-danger" *ngIf="signUpForm2.controls.userName.value==oldUserName">{{statusMsg}}
+                        </div>
+                    </div>
+                    <i class="col-lg-1" style="position: relative;right: 60px;top: 3px;"
+                        *ngIf="signUpForm2.controls.userName.value==oldUserName"><img
+                            src="assets/images/errorSymbol.png" style="width: 25px;height: 25px"></i>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="offset-lg-1 col-lg-5 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Set a Password
+                            <span class="text-danger"> * </span>
+
+                            <!-- This is a button which on hover shows a popup message...Used to know why is this for?? -->
+                            <button class="popup" style="margin-left: 7px;">&#63;
+                                <span class="popuptext" style="width: 500px; margin-left: -255px">This password is for
+                                    logging into your account when entering the app!
+                                </span>
+                            </button>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-4 text-left">
+                        <input type="password" class="form-control" placeholder="Set a Password"
+                            formControlName="password" />
+                        <div *ngIf="submitted2 && signUpForm2.controls.password.errors" class="text-danger">
+                            <div *ngIf="signUpForm2.controls.password.errors.required">
+                                Password is required..!!
+                            </div>
+                            <div *ngIf="signUpForm2.controls.password.errors.pattern">
+                                Password must contain atleast a digit, a lower-case, an upper-case alphabets and length
+                                must be atleast 8 characters !!
+                            </div>
+                        </div>
+                        <!-- When password and transaction password are same, error is shown -->
+                        <div *ngIf="submitted2 && !signUpForm2.controls.password.errors &&signUpForm2.controls.password.value===signUpForm2.controls.tranPassword.value"
+                            class="text-danger">
+                            Account Password and Transaction Password can't be same!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password2" class="offset-lg-1 col-lg-5 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Re-enter Password
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-4 text-left">
+                        <input type="password" class="form-control" placeholder="Re-enter Password"
+                            formControlName="password2" />
+                        <div *ngIf="submitted2 && signUpForm2.controls.password2.errors" class="text-danger">
+                            <div *ngIf="signUpForm2.controls.password2.errors.required">
+                                Enter the same Account Password as above..!!
+                            </div>
+                        </div>
+                        <!-- wWhen re-enter password is not same as original password...eroor is shown -->
+                        <div *ngIf="submitted2 && !signUpForm2.controls.password2.errors && signUpForm2.controls.password.value!=signUpForm2.controls.password2.value"
+                            class="text-danger">
+                            Password Mismatch
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tranPassword" class="offset-lg-1 col-lg-5 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Set the Transaction Password
+                            <span class="text-danger"> * </span>
+
+                            <!-- This is a button which on hover shows a popup message...Used to know why is this for?? -->
+                            <button class="popup" style="margin-left: 7px">&#63;
+                                <span class="popuptext">This password is to be used for performing each and every
+                                    transaction later when using this
+                                    app!
+                                </span>
+                            </button>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-4 text-left">
+                        <input type="password" class="form-control" placeholder="Set a Transaction Password"
+                            formControlName="tranPassword" />
+                        <div *ngIf="submitted2 && signUpForm2.controls.tranPassword.errors" class="text-danger">
+                            <div *ngIf="signUpForm2.controls.tranPassword.errors.required">
+                                Transaction Password is required..!!
+                            </div>
+                            <div *ngIf="signUpForm2.controls.tranPassword.errors.pattern">
+                                Transaction Password must contain atleast a digit, a lower-case, an upper-case alphabets
+                                and length must be atleast 8 characters !!
+                            </div>
+                        </div>
+                        <!-- When password and transaction password are same, error is shown -->
+                        <div *ngIf="submitted2 && !signUpForm2.controls.tranPassword.errors && signUpForm2.controls.password.value==signUpForm2.controls.tranPassword.value"
+                            class="text-danger">
+                            Account Password and Transaction Password can't be same!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tranPassword2" class="offset-lg-1 col-lg-5 text-left font-weight-bold">
+                        <h5 style="font-family: 'Segoe UI'; font-weight: 600">Re-enter the Transaction Password
+                            <span class="text-danger"> * </span>
+                        </h5>
+                    </label>
+                    <div class="col-lg-1 text-center">
+                        :
+                    </div>
+                    <div class="col-lg-4 text-left">
+                        <input type="password" class="form-control" placeholder="Re-enter Transaction Password"
+                            formControlName="tranPassword2" />
+                        <div *ngIf="submitted2 && signUpForm2.controls.tranPassword2.errors" class="text-danger">
+                            <div *ngIf="signUpForm2.controls.tranPassword2.errors.required">
+                                Enter the same Transaction Password as above..!!
+                            </div>
+                        </div>
+                        <!-- wWhen re-enter password is not same as original password...eroor is shown -->
+                        <div *ngIf="submitted2 && !signUpForm2.controls.tranPassword2.errors && signUpForm2.controls.tranPassword.value!=signUpForm2.controls.tranPassword2.value"
+                            class="text-danger">
+                            Password Mismatch
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="offset-lg-1 col-lg-4" style="margin-top: 10px;">
+                        <button class="btn btn-outline-dark" (click)="back()">Back</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="buttonAnimated" type="submit" (click)="signUp()"
+                            style="background-color: goldenrod; color: black">
+                            <span>Sign Up</span>
+                        </button>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="result" class="text-center">
+            <h3>Account has been succssfully created..!!</h3>
+            <br>
+            <h5>Please
+                <a routerLink="/login">login</a> to continue..!!</h5>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+hr.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.card{
+    margin: auto;
+    height: 300px;
+    max-height: 310px;
+    width: 250px;
+    border-radius: 20px;
+    border: 2px solid black;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card img{
+    margin-top: 25px;
+    width: 100%;
+    height: 250px;
+    transition: 0.6s;
+}
+
+
+.card h3{
+    background-color: black;
+    color: white;
+    padding: 15px;
+    margin-top: 25px;
+    text-align: center;
+    transition: 0.6s;
+}
+
+.card:hover{
+    /* box-shadow: 0 4px 6px 6px; */
+    border: none;
+}
+
+.card:hover h3{
+    margin-top: -35px;
+    transition: 0.6s;
+}
+
+.card:hover img{
+
+    margin-top: -30px;
+    margin-left: -30px;
+    height: 310px;
+    width:125%;
+    transition: 0.6s;
+}
+
+.card2{
+    margin: 15px;
+    height: 200px;
+    max-height: 200px;
+    width: 165px;
+    max-width: 165px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 1.5s;
+    transform-style: preserve-3d;
+}
+
+.front{
+    background-image: url("/assets/images/background.jpg");
+    background-size: cover;
+    position: relative;
+    height: 200px;
+}
+
+img{
+    margin-top: 1%;
+    width: 98%;
+    height: 145px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.name{
+    /* font-weight: bold; */
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Trebuchet MS';
+}
+
+.category{
+    color: white;
+    text-align: center;
+    margin-top: -7px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.back{
+    /* background-color: rgba(255,127,80,0.5); */
+    background-image: url("/assets/images/background.jpg");
+    background-size: cover;
+    /* background-image: radial-gradient(black,grey); */
+    position: relative;
+    transform: rotateY(180deg);
+    height: 200px;
+}
+
+.back button{
+    border-radius: 50%;
+    margin-top: 10%;
+    left: 50%;
+}
+
+.card2:hover{
+    transform: rotateY(180deg);
+}
+
+.card2:hover .front{
+    display: none;
+}
+
+
+

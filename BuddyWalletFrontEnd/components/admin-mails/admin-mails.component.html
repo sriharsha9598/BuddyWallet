@@ -1,0 +1,45 @@
+<div class="offset-lg-1 offset-md-1">
+    <div class="card col-lg-11 col-md-11">
+        <br>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 text-right" style="margin-top: 5px;">
+                <button class="btn btn-outline-success" style="font-size: x-large;" (click)="goToUsersPage()">
+                    Users</button>
+                <button class="btn btn-success" style="font-size: x-large;">Mails</button>
+            </div>
+
+            <!-- Heading or Title -->
+            <div class="col-lg-8 col-md-8">
+                <h1 class="text-center text-primary col-lg-12">Mails</h1>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="col-lg-2 col-md-2 text-right" style="margin-top: 5px">
+                <button class="btn btn-danger" (click)="logOut()">Log out</button>&nbsp;&nbsp;
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="text-center">
+            <button class="btn btn-{{activeBtn[0]}}dark" (click)="changeCategory('complaint')">Complaints</button>
+            <button class="btn btn-{{activeBtn[1]}}dark" (click)="changeCategory('helpMail')">Help Mails</button>
+            <button class="btn btn-{{activeBtn[2]}}dark" (click)="changeCategory('feedback')">Feedbacks</button>
+        </div>
+        <br><br>
+        <div class="col-lg-12 col-md-12" style="height:500px;max-height: 500px; overflow-y: auto;">
+            <div class="faqs">
+        <!-- Filtering the mails by feedbacks, complaints and help mails  -->
+                <details *ngFor="let mail of allMails | filter:category">
+                    <summary>{{mail.name}}<span>{{mail.mailDate}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&#8594;
+                        {{mail.subject}}<span>{{mail.mailTime}}&nbsp;&nbsp;&nbsp;&nbsp;</span></summary>
+                    <hr>
+                    <p class="text">{{mail.message}}</p>
+                </details>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

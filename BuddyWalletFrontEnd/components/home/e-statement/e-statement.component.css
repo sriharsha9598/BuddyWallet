@@ -1,0 +1,32 @@
+.inpBox{
+    border: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    width: 160px;
+    font-family: 'Segoe UI';
+    text-align: center;
+    outline: none;
+  }
+  
+  .contentCard{
+    border-color: white;
+    border-width: 2px;
+    box-shadow: 0 2px 4px 4px rgba(0,0,0,0.4);
+    /* background-image: url("/assets/images/itemBg.jpg"); */
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Trebuchet MS';
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .scroll{
+    max-height: 390px;
+    overflow-y: auto;
+  }
+
+  hr.line{
+    text-shadow:2px 1px black;
+    border: 1px solid;
+}

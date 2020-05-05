@@ -1,0 +1,40 @@
+<div class="row col-md-12 col-lg-12">
+    <div class="offset-md-1 offset-lg-1 col-lg-3 col-md-3 text-center"
+        style="background-image: url(/assets/images/background.jpg);background-size: cover; height: 525px;">
+        <br><br>
+        <div class="card" (click)="addBeneficiary()">
+            <img src="assets/images/addBeneficiary2.jpg">
+            <h3>Add Beneficiary</h3>
+        </div>
+    </div>
+    <div class="col-lg-7 col-md-7 text-center"
+        style="border: 1px solid;background-color: ghostwhite; height: 525px;max-height: 525px;overflow-y: auto;">
+        <h2 style="color: #0275d8;margin-top: 15px;">Existing Beneficiaries</h2>
+        <hr style="border: 1px solid #0275d8;">
+        <div class="text-center text-{{status}}">{{statusMsg}}</div>
+        <div class="row" style="justify-content: center;">
+            <div *ngFor="let obj of beneficiaries;let i=index;">
+                <div class="card2">
+                    <div class="front">
+                        <img src="assets/images/beneficiaryIcon.jpg">
+                        <div class="name">{{obj.nickName}}</div>
+                        <div class="category">{{obj.category}}</div>
+                    </div>
+                    <div class="back">
+                        <button class="btn btn-success" (click)="transferNow(i)" style="font-size: x-large;">&#x21B9;</button>
+                        <br>
+                        <button class="btn btn-dark" (click)="editBeneficiary(i)"><i class="fa fa-pencil"
+                                style="font-size: xx-large"></i></button>
+                        <br><button class="btn btn-danger" (click)="deleteBeneficiary(i)"><i class="fa fa-trash"
+                                style="font-size: xx-large;"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!beneficiaries||beneficiaries.length==0">
+                <h3 class="text-danger" style="font-family: Trebuchet MS;">You have no Beneficiaries to show!!</h3>
+                <h6 class="text-secondary" style="font-family: Trebuchet MS;" (click)="addBeneficiary()"
+                    style="cursor: pointer;"><u>Add one to continue!!</u></h6>
+            </div>
+        </div>
+    </div>
+</div>

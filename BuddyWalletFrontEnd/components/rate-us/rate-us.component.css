@@ -1,0 +1,84 @@
+.rating{
+    display: inline-block;
+    transform: rotateY(180deg);
+}
+
+.rating input{
+    display: none;
+}
+
+.rating label{
+    display: inline-block;
+    cursor: pointer;
+    width: 45px;
+}
+
+.rating label::before{
+    content: '\f005';
+    font-family: 'fontAwesome';
+    position: absolute;
+    display: inline-block;
+    font-size: 40px;
+    color: #101010;
+}
+
+.rating label::after{
+    content: '\f005';
+    font-family: 'fontAwesome';
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    color: goldenrod;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.rating label:hover::after,
+.rating label:hover ~ label::after,
+.rating input:checked ~ label::after 
+{
+    opacity: 1;
+}
+
+.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+    width: 150%;
+    margin-right: 25%;
+    margin-left: -25%;
+}
+
+.scroll{
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.bgCard{
+    font-family: 'Trebuchet MS';
+    font-size: larger;
+    text-align: justify ;
+}
+
+.card1 {
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-width: 0px;
+    border-color: grey;
+    border-width: 2px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
+}
+
+.inpBox{
+  border-width: 1px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height: 125px;
+  width: 100%;
+  margin: auto;
+  transition: 0.5s;
+  font-family: 'Segoe UI';
+  outline: none;
+}

@@ -1,0 +1,138 @@
+<div class="bgCard"
+    style="background-image: url(assets/images/fundtransferBack2.png);background-size: cover;height: 83%"
+    *ngIf="!result">
+    <br>
+    <div class="row">
+        <div class="offset-lg-4 offset-md-4 col-lg-5 col-md-5" style="border-radius: 25px;" *ngIf="!input && !result">
+            <br>
+            <div class="contentCard">
+                <br>
+                <!-- fund transfer form -->
+                <form [formGroup]="fundTransferForm" (ngSubmit)="submit()">
+                    <div class="form-group text-center">
+                        <!-- add beneficiary option will be displayed until user selects any one beneficiary-->
+                        <div class="text-center" *ngIf="fundTransferForm.controls.beneficiaryIndex.invalid && !selectedBeneficiaryIndex"><a
+                                style="color: white;cursor: pointer;" routerLink="/home/add_beneficiary">+ add new
+                                Beneficiary</a></div>
+                        <label *ngIf="fundTransferForm.controls.beneficiaryIndex.invalid && !selectedBeneficiaryIndex">Choose a
+                            Beneficiary</label>
+                            <!-- if there is any selected beneficiary beneficiary index value will be chosen as that else null -->
+                        <select class="input text-center" formControlName="beneficiaryIndex" id="beneficiaryIndex"
+                            style="outline: none;" [(ngModel)]="selectedBeneficiaryIndex">
+                            <!-- retrieving all the beneficiaries existing in this account -->
+                            <option *ngFor="let obj of beneficiaries;" style="color: rgb(20,20,20);cursor: pointer;"
+                                [value]="obj.id">
+                                {{obj.nickName}}&nbsp;({{obj.category}})</option>
+
+                            <!-- When account has no beneficiaries, messages will be displayed -->
+                            <option style="color: rgb(20,20,20);" *ngIf="!beneficiaries || beneficiaries.length==0"
+                                disabled>No Beneficiaries in your account</option>
+                        </select>
+                        <div class="text-danger" *ngIf="submitted && fundTransferForm.controls.beneficiaryIndex.errors">
+                            <div *ngIf="fundTransferForm.controls.beneficiaryIndex.errors.required">
+                                <span style="background-color: whitesmoke;">&nbsp;Beneficiary is
+                                    required..!!&nbsp;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center" *ngIf="fundTransferForm.controls.beneficiaryIndex.valid">
+                        <input class="input" type="number" id="amount" formControlName="amount"
+                            placeholder="enter money to be transferred" required>
+                        <div class="text-danger" *ngIf="submitted && fundTransferForm.controls.amount.errors">
+                            <div *ngIf="fundTransferForm.controls.amount.errors.required">
+                                <span style="background-color:  whitesmoke;">&nbsp;Amount is required..!!&nbsp;</span>
+                            </div>
+                            <!-- when user enters an invalid amount -->
+                            <div *ngIf="fundTransferForm.controls.amount.errors.min">
+                                <span style="background-color:  whitesmoke;">&nbsp;enter valid amount..!!&nbsp;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If there is any message about transaction -->
+                    <div class="form-group text-center" *ngIf="fundTransferForm.controls.beneficiaryIndex.valid">
+                        <input type="text" class="input" formControlName="message"
+                            style="border-bottom: 1px solid ghostwhite;" placeholder="Tell Why this is for?">
+                    </div>
+                    <div class="text-center">
+                        <button class="buttonAnimated" type="submit">
+                            <span>Transfer</span>
+                        </button>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+        <div class="offset-lg-3 offset-md-3 col-lg-7 col-md-7" style="border-radius: 25px;" *ngIf="input && !result">
+            <br>
+            <br>
+            <div class="contentCard">
+                <table class="text-center">
+                    <col width="500">
+                    <col width="500">
+                    <tr>
+                        <td colspan="2" class="text-center font-weight-bold text-light">
+                            <div class="text-center text-danger"><span
+                                    style="background-color: whitesmoke;margin-top: 5px;">{{statusMsg}}</span>&nbsp;
+                            </div>
+                            <h2 style="font-family: 'Segoe UI';text-shadow: 1px 1px grey;opacity: 0.9;">Transaction
+                                Password :
+                                &nbsp;&nbsp;<span style="font-size: medium;font-weight: normal;position: relative;">
+                                    <input class="inpBox" type="password" #tranPassword id="tranPasswordInputBox"
+                                        style="width: 275px;margin-top: 2px;opacity: 1; "
+                                        placeholder="enter the Transaction Password&nbsp;&nbsp;">
+                                    <!-- When user enters a wrong transation password, error is shown -->
+                                    <span *ngIf="wrong" style="position: relative;top: -3px;right: 35px;">&nbsp;<img
+                                            src="assets/images/errorSymbol.png" style="width: 25px;height: 25px"></span>
+                                </span></h2>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button class="buttonAnimated" id="verifyButton"
+                                (click)="fundTransfer(tranPassword.value)">
+                                <span>Verify</span>
+                            </button>
+                            <span *ngIf="loading" style="position: relative;">&nbsp;<img
+                                    src="assets/images/loading2.gif" style="width: 35px;height: 35px"></span>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center col-lg-12 col-md-12" *ngIf="input && result" style="margin-top: 50px;">
+    <br>
+    <br>
+    <img src="/assets/images/successSymbol.gif" height="125" width="125" />
+    <br>
+    <h4 class="text-success">
+        {{statusMsg}}
+    </h4>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="transferMore()">
+        <span>Another Transfer</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">No, thanks!</button>
+</div>
+<div class="text-center col-lg-12 col-md-12" *ngIf="!input && result" style="margin-top: 50px;">
+    <br>
+    <br>
+    <img src="/assets/images/faile.gif" height="100" width="125" />
+    <br>
+    <h2 class="text-danger">
+        Transaction Failed!!
+    </h2>
+    <h6 class="text-danger">
+        Due to {{statusMsg}}
+    </h6>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="transferMore()">
+        <span>Try Again</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">Back to Home</button>
+</div>

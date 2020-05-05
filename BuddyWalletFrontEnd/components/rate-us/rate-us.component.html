@@ -1,0 +1,56 @@
+<div class="card1 offset-lg-1 offset-md-1 col-lg-10 col-md-10" style="height: 690px">
+    <div class="row">
+        <div class="offset-lg-3 offset-md-3 col-lg-6 col-md-6 text-primary text-center"
+            style="font-style: italic;margin-top: 20px;">
+            <h1 style="text-shadow:2px 1px lightgrey;">Feedback
+            </h1>
+            <hr class="line text-primary">
+        </div>
+        <div class="col-lg-3 col-md-3 text-right" style="margin-top:30px;">
+            <button class="btn btn-outline-dark" (click)="close()">X</button>&nbsp;
+        </div>
+    </div>
+    <div class="bgCard offset-md-1 offset-lg-1 col-lg-10 col-md-10" *ngIf="!submitted">
+        <div class="offset-lg-3 offset-md-3 col-lg-6 col-md-6">
+            <h3 class="text-secondary text-center">We are excited to hear from you!</h3><hr>
+            <br>
+            <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+                <div class="form-group row">
+                    <!-- <div class="col-lg-12 col-md-12"> -->
+                    <h2 style="font-family: 'Segoe UI'; font-weight: 600;text-shadow: 1px 2px lightgrey">
+                        &nbsp;&nbsp;&nbsp;&nbsp; Your Rating :
+                        <span class="rating">
+                            <input type="radio" formControlName="subject" name="star" id="star1" value="5-star" class="form-control" required><label for="star1"></label>
+                            <input type="radio" formControlName="subject" name="star" id="star2" value="4-star" class="form-control" required><label for="star2"></label>
+                            <input type="radio" formControlName="subject" name="star" id="star3" value="3-star" class="form-control" required><label for="star3"></label>
+                            <input type="radio" formControlName="subject" name="star" id="star4" value="2-star" class="form-control" required><label for="star4"></label>
+                            <input type="radio" formControlName="subject" name="star" id="star5" value="1-star" class="form-control" required><label for="star5"></label>
+                        </span>
+                    </h2>
+                    <br><br><br>
+                    <!-- </div> -->
+                </div>
+                <div class="form-group row">
+                    <textarea class="inpBox form-control" formControlName="message" placeholder=" Tell how can we improve us.." cols="40" rows="10" required></textarea>
+                </div>
+                <div class="text-center">
+                    <br>
+                    <button class="btn btn-success" type="submit" (click)="submit()">Submit</button>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="text-center col-lg-12 col-md-12" *ngIf="submitted" style="margin-top: 50px;">
+        <br>
+        <br>
+        <br>
+        <h3 class="text-success">
+            Thanks for your Feedback!!
+        </h3>
+        <br>
+        <h6>
+            Redirecting back...
+        </h6>
+    </div>
+</div>

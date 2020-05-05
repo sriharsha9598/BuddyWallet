@@ -1,0 +1,107 @@
+<!-- <p>edit-profile works!</p>
+<div class="container row">
+    <div class="col-md-6">
+        <input type="file" (change)="onFileChanged($event)">
+
+    </div>
+    <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload">
+    </div>
+</div>
+<hr />
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+    </div>
+</div> -->
+<br>
+<div class="offset-lg-1 offset-md-1 col-lg-10 col-md-10">
+    <form [formGroup]="profileForm" (ngSubmit)="save()" (click)="activateButtons()">
+        <div class="profileCard">
+            <div class="left">
+                <img src="/assets/images/beneficiaryIcon.jpg">
+                <br>
+                <input type="text" formControlName="userName" disabled style="font-size: larger;font-weight: bold;color: #fff;width: 200px;text-align: center;"><br><br>
+                <input type="number" class="leftData" formControlName="accNum" disabled><br>
+                Balance : &nbsp;&#8377;&nbsp;<input type="number" class="leftData" formControlName="balance" disabled style="width: 75px;">
+            </div>
+            <div class="right text-center">
+                <h3>Personal Information</h3>
+                <input type="text" formControlName="firstName" disabled style="text-transform: uppercase;letter-spacing: 1px;font-size: larger;font-weight: bold;width: 175px;">
+                <input type="text" formControlName="middleName" disabled *ngIf="profileForm.controls.middleName.value" style="text-transform: uppercase;letter-spacing: 1px;font-size: larger;font-weight: bold;width: 175px;">
+                <input type="text" formControlName="lastName" disabled style="text-transform: uppercase;letter-spacing: 1px;font-size: larger;font-weight: bold;width: 175px;">
+                <br>
+                <br>
+                <div class="row col-md-12 col-lg-12">
+                    <div class="data col-lg-3 col-md-3 ">
+                        <h4>City</h4>
+                        <input type="text" formControlName="city">
+                    </div>
+                    <div class="data col-lg-5 col-md-5">
+                        <h4>Email Id</h4>
+                        <input type="text" formControlName="emailId">
+                    </div>
+                    <div class="data col-lg-4 col-md-4">
+                        <h4>Mobile No</h4>
+                        <input type="number" formControlName="phoneNum">
+                    </div>
+                </div>
+                <div class="row col-md-12 col-lg-12 ">
+                    <div class="col-lg-3 col-md-3 text-left text-danger">
+                        <div *ngIf="profileForm.controls.city.errors">
+                            <div *ngIf="profileForm.controls.city.errors.required">City is required..!!</div>
+                            <div *ngIf="profileForm.controls.city.errors.pattern">City must start with a Capital letter and contain characters only..!!</div>
+                            <div *ngIf="profileForm.controls.city.errors && profileForm.controls.city.value">Enter a valid city..!!</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 text-left text-danger">
+                        <div *ngIf="profileForm.controls.emailId.errors">
+                            <div *ngIf="profileForm.controls.emailId.errors.required">Email is required..!!</div>
+                            <div *ngIf="profileForm.controls.emailId.errors.email">enter a valid email..!!</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 text-left text-danger">
+                        <div *ngIf="profileForm.controls.phoneNum.errors">
+                            enter a valid mobile number of 10digits..!!
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h3>Account Information</h3>
+                <h4 style="text-align: center;">Transactions Count : <input type="number" formControlName="transCount" disabled style="font-size: x-large;font-weight: bold;width: 50px;"></h4>
+                <br>
+                <div class="row offset-lg-1 offset-md-1 col-md-10 col-lg-10">
+                    <div class="data col-lg-4 col-md-4 text-left">
+                        <h4>Password</h4>
+                        <input type="password" formControlName="password">
+                    </div>
+                    <div class="data col-md-8 col-lg-8 text-left">
+                        <h4>Transaction Password</h4>
+                        <input type="password" formControlName="tranPassword">
+                    </div>
+                </div>
+                <div class="row offset-lg-1 offset-md-1 col-md-10 col-lg-10">
+                    <div class="col-lg-4 col-md-4 text-danger text-left">
+                        <div *ngIf="profileForm.controls.password.errors">
+                            <div *ngIf="profileForm.controls.password.errors.required">Password is required..!!</div>
+                            <div *ngIf="profileForm.controls.password.errors.pattern">Password must contain atleast a digit, a lower-case, an upper-case alphabets and length
+                                must be atleast 8 characters !!</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 text-danger text-left">
+                        <div *ngIf="profileForm.controls.tranPassword.errors">
+                            <div *ngIf="profileForm.controls.tranPassword.errors.required">Transaction Password is required..!!</div>
+                            <div *ngIf="profileForm.controls.tranPassword.errors.pattern">Transaction Password must contain atleast a digit, a lower-case, an upper-case alphabets and length
+                                must be atleast 8 characters !!</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="text-right">
+                    <button id="button1" style="visibility: hidden;" type="submit" class="btn btn-success" (click)="save()">SAVE</button>&nbsp;
+                    <button id="button2" style="visibility: hidden;" class="btn btn-outline-dark" (click)="cancel()">cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

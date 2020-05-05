@@ -1,0 +1,143 @@
+.buttonAnimated {
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    font-size:20px;
+    font-family: cursive;
+    padding: 5px;
+    width: 125px;
+    transition: all 0.7s;
+    cursor: pointer;
+    margin: 5px;
+    outline: none;
+}
+
+.buttonAnimated span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.7s;
+}
+
+.buttonAnimated span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -50px;
+    transition: 0.7s;
+}
+
+.buttonAnimated:hover span {
+    padding-right: 19px;
+}
+
+.buttonAnimated:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  max-height: 575px;
+  overflow-y: auto;
+  margin: auto;
+  transition: 0.5s;
+  text-align: left;
+  font-family: 'Segoe UI';
+  /* margin-bottom: 10px; */
+}
+.cardTitle{
+    background-color:goldenrod;
+    padding: 25px;
+    font-family: Georgia ;
+    /* font-size: 50px; */
+    font-weight: 549;
+    text-align: center;
+}
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+  }
+  
+  .bgButton {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 5px;
+    background-color: rgb(31, 29, 29);
+    color:goldenrod;
+    font-family: cursive;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    outline: none;
+  }
+.bgButton:hover {
+    transition: 0.7s; 
+    display: inline-block;
+    padding: 8px;
+    color:black;
+    background-color:goldenrod;
+    font-style: italic;
+    /* font-family: 'Segoe UI'; */
+    font-family: cursive;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+
+.popup {
+    border-radius: 50%;
+    border: none;
+    background-color:black;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width:650px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius:15px;
+    padding: 8px 0;
+    position: absolute;
+    outline: none;
+    bottom: 150%;
+    margin-left: -330px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Hover this class - hide and show the popup */
+  .popup:hover .popuptext{
+    visibility: visible;
+    animation: fadeIn 1s;
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }

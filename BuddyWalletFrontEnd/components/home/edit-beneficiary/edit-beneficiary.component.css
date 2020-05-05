@@ -1,0 +1,118 @@
+.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+    width: 150%;
+    margin-right: 25%;
+    margin-left: -25%;
+}
+
+.scroll{
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.bgCard{
+    font-family: 'Trebuchet MS';
+    font-size: larger;
+    text-align: justify ;
+}
+
+.card1 {
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-width: 0px;
+    border-color: grey;
+    border-width: 2px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
+}
+
+.inpBox{
+  border-width: 1px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height: 125px;
+  width: 100%;
+  margin: auto;
+  transition: 0.5s;
+  font-family: 'Segoe UI';
+  outline: none;
+}
+
+.box{
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.input{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #999;
+}
+
+.error{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #d9534f;
+}
+
+.box div[type="submit"]{
+    border-bottom: none;
+    cursor: pointer;
+    background: #0275d8;
+    color: White;
+    padding: 10px ;
+    text-align: center;
+}
+
+.box div[type="submit"]:focus{
+    border-bottom: none;
+}
+
+.box form div{
+    position: relative;
+}
+
+.box form div label{
+    position: absolute;
+    margin-bottom: 25px;
+    pointer-events: none;
+    left: 0;
+    color: #999;
+    transition: 0.5s;
+}
+
+.input:focus label,
+.input:valid label
+{    /* top:20px; */
+    left: 0;
+    color: #0275d8;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.input:valid,.error:valid{
+    border-bottom: 2px solid black;
+}
+
+.input:focus,.error:focus
+{
+    border-bottom: 2px solid #0275d8;
+}
+
+

@@ -1,0 +1,21 @@
+hr.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+}
+    
+.scroll{
+    max-height: 390px;
+    overflow-y: auto;
+}
+
+.inpBox{
+    border: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    width: 160px;
+    font-family: 'Segoe UI';
+    text-align: center;
+    outline: none;
+}
+      

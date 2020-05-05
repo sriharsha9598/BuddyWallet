@@ -1,0 +1,85 @@
+<div *ngIf="input" class="bgCard offset-md-1 offset-lg-1 col-lg-10 col-md-10">
+    <br>
+    <div class="box offset-lg-2 offset-md-2 col-lg-8 col-md-8">
+
+    <!-- Back Button -->
+        <button class="btn btn-dark" (click)="home()">Cancel</button>
+        <br>
+        <br>
+
+        <!-- Add Beneficiary Form -->
+
+    <form [formGroup]="beneficiaryForm" (ngSubmit)="addBeneficiary()">
+            <div class="form-group">
+                <label>Beneficiary Name</label>
+                <input class="input" type="text" id="name" formControlName="name" required>
+                <div class="text-danger" *ngIf="submitted && beneficiaryForm.controls.name.errors">
+                    <div *ngIf="beneficiaryForm.controls.name.errors.required">
+                        Beneficiary Name is required..!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Beneficiary Account Number</label>
+                <input class="input" type="number" id="bAccNum" formControlName="bAccNum" required>
+                <div class="text-danger" *ngIf="submitted && beneficiaryForm.controls.bAccNum.errors">
+                    <div *ngIf="beneficiaryForm.controls.bAccNum.errors.required">
+                        Beneficiary Account Number is required..!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Nick Name</label>
+                <input class="input" type="text" id="nickName" formControlName="nickName" required>
+                <div class="text-danger" *ngIf="submitted && beneficiaryForm.controls.nickName.errors">
+                    <div *ngIf="beneficiaryForm.controls.nickName.errors.required">
+                        Nick Name is required..!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="input" style="border-bottom: 1px solid #999;" formControlName="category">
+            </div>
+                <div type="submit" (click)="addBeneficiary()">SUBMIT</div>
+        </form>
+    </div>
+</div>
+
+<!-- If operation successful -->
+<div class="text-center col-lg-12 col-md-12" *ngIf="!input && success" style="margin-top: 50px;">
+    <br>
+    <br>
+    <br>
+    <h3 class="text-success">
+        Beneficiary has been successfully added !
+    </h3>
+    <h6 class="text-secondary">
+        You can now transfer funds to this Beneficiary..
+    </h6>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="anotherBeneficiary()">
+        <span>Add another Beneficiary</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">No, Thanks</button>
+</div>
+
+<!-- If opearion failed -->
+<div class="text-center col-lg-12 col-md-12" *ngIf="!input && !success" style="margin-top: 50px;">
+    <br>
+    <br>
+    <br>
+    <h3 class="text-danger">
+        Oops, Error!
+    </h3>
+    <h6 class="text-secondary">
+        Can't add Beneficiary right now! Try Again after sometime..
+    </h6>
+    <br>
+    <br>
+    <button class="btn btn-success" style="width: 200px;height: 40px" (click)="addBeneficiary()">
+        <span>Try Again</span>
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">No, Thanks</button>
+</div>

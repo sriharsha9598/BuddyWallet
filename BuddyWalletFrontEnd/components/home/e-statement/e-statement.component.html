@@ -1,0 +1,73 @@
+<div class="bgCard col-lg-12 col-md-12"
+    style="background-image: url(assets/images/ministatementbg6.jpg);background-size: 100%;height: 83%;">
+    <br><br>
+    <div class="contentCard col-lg-8 col-md-8 text-center">
+        <div class="text-center" style="font-size: large;font-family:Trebuchet MS;">
+            <br>
+            From : &nbsp;<input type="date" class="inpBox text-center" [(ngModel)]="fromDate"
+                style="font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            To : &nbsp;<input type="date" class="inpBox text-center" [(ngModel)]="toDate" style="font-size: medium;">
+            <hr class="line text-primary">
+        </div>
+        <div class="scroll">
+            <!-- If from date and to date are null -->
+            <table class="table text-center" *ngIf="!fromDate && !toDate"
+                style="font-size: large;font-family: Trebuchet MS;">
+                <tr class="text-primary">
+                    <th>Transaction Id</th>
+                    <th>Date</th>
+                    <th>Transaction</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                </tr>
+                <tr *ngFor="let obj of trans">
+                    <td>{{obj.id}}</td>
+                    <td>{{obj.transDate}}-{{obj.transTime}}</td>
+                    <td>{{obj.transaction}}</td>
+                    <td *ngIf="obj.amount>0" class="text-success" style="font-weight: bold ;">+{{obj.amount}}</td>
+                    <td *ngIf="0>obj.amount" class="text-danger" style="font-weight: bold ;">{{obj.amount}}</td>
+                    <td *ngIf="obj.amount==0"></td>
+                    <td class="text-primary">{{obj.balance}}</td>
+                </tr>
+                <tr *ngIf="!trans || 1>=trans.length">
+                    <th colspan="7">
+                        <p class="text-center text-danger">
+                            Sorry, No Transactions Available ..!
+                        </p>
+                    </th>
+                </tr>
+                <tr colspan="3" class="text-right">
+                    <button class="btn btn-outline-dark" (click)="home()">Back to Home</button>&nbsp;
+                </tr>
+            </table>
+
+            <!-- If from date and to date are entered -->
+            <table class="table" *ngIf="fromDate || toDate">
+                <tr *ngFor="let obj of trans">
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.id}}</td>
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.transDate}}-{{obj.transTime}}
+                    </td>
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.transaction}}</td>
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate && obj.amount>0" class="text-success"
+                        style="font-weight: bold ;">
+                        +{{obj.amount}}</td>
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate && 0>obj.amount" class="text-danger"
+                        style="font-weight: bold ;">
+                        {{obj.amount}}</td>
+                    <td *ngIf="obj.transDate>=fromDate && toDate>=obj.transDate">{{obj.balance}}</td>
+
+                </tr>
+                <tr *ngIf="!trans || trans.length==0">
+                    <th colspan="7">
+                        <p class="text-center text-danger">
+                            Sorry, No Transactions Available ..!
+                        </p>
+                    </th>
+                </tr>
+                <tr colspan="3" class="text-right">
+                    <button class="btn btn-outline-dark" (click)="home()">Back to Home</button>&nbsp;
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

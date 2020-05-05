@@ -1,0 +1,50 @@
+.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+    width: 150%;
+    margin-right: 25%;
+    margin-left: -25%;
+}
+
+.scroll{
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+
+.bgCard{
+    /* font-family: 'Trebuchet MS';
+    font-size: small; */
+    text-align: justify ;
+}
+
+.card1 {
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-width: 0px;
+    border-color: grey;
+    border-width: 2px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.4);
+}
+
+.faqs{
+    padding: 10px 20px;
+}
+
+details{
+    background:lightgrey;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: "Rubik";
+    font-size: large;
+    text-align: justify;
+}
+
+details summary{
+    /* background: lightgrey; */
+    outline: none;
+    font-family: 'Trebuchet MS';
+    font-size: large;
+}

@@ -1,0 +1,124 @@
+.inpBox{
+    /* border: black; */
+    border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  height: 35px;
+  margin: auto;
+  transition: 0.5s;
+  /* background-color: #f1f1f1; */
+  text-align: center;
+  font-family: 'Segoe UI';
+  outline: none;
+}
+
+.buttonAnimated {
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid ghostwhite;
+    color: ghostwhite;
+    text-align: center;
+    font-size:20px;
+    font-family: cursive;
+    padding: 5px;
+    width: 135px;
+    cursor: pointer;
+    margin: 5px;
+    outline: none;
+}
+
+.buttonAnimated span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.7s;
+}
+
+.buttonAnimated span:after {
+    content: '\00bb';
+    color: rgb(20,20,20);
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -50px;
+    transition: 0.7s;
+}
+
+.buttonAnimated:hover, .buttonAnimated:hover span{
+    color: rgb(20,20,20);
+    background-color: ghostwhite;
+    transition: 0.7s;
+}
+
+.buttonAnimated:hover span {
+    padding-right: 25px;
+}
+
+.buttonAnimated:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.contentCard{
+    border-color: white;
+    border-width: 2px;
+    box-shadow: 0 1px 2px 2px rgba(0,0,0,0.4);
+    background-image: url("/assets/images/itemBg2.jpg");
+    border-radius: 25px
+}
+
+hr.line{
+    text-shadow:2px 1px lightgrey;
+    border: 1px solid;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.box{
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.input{
+    background: transparent;
+    background-color: transparent;
+    color: ghostwhite;
+    font-size: 20px;
+    text-align: center;
+    /* margin-top: 25px;
+    margin-bottom: 25px; */
+    width: 80%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid ghostwhite;
+}
+
+label{
+    color: ghostwhite;
+    opacity: 0.8;
+    font-size: 18px;
+    text-align: center;
+    top: 33px;
+    position: relative;
+}
+
+.input::placeholder{
+    color: ghostwhite;
+    opacity: 0.8;
+    font-size: 18px;
+}
+
+.box form div{
+    position: relative;
+}
+
+.input:valid{
+    color: ghostwhite;
+    border-bottom: 2px solid whitesmoke;
+}

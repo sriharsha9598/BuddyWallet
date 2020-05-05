@@ -1,0 +1,110 @@
+<div class="card1 offset-lg-1 offset-md-1 col-lg-10 col-md-10" style="height: 690px">
+    <div class="row">
+        <!-- Heading or Title -->
+        <div class="offset-lg-3 offset-md-3 col-lg-6 col-md-6 text-primary text-center"
+            style="font-style: italic;margin-top: 20px;">
+            <h1 style="text-shadow:2px 1px lightgrey;">Contact Us
+            </h1>
+            <hr class="line text-primary">
+        </div>
+        <div class="col-lg-3 col-md-3 text-right" style="margin-top:30px;">
+            <button class="btn btn-outline-dark" (click)="close()">X</button>&nbsp;
+        </div>
+    </div>
+    <div class="bgCard row offset-md-1 offset-lg-1 col-lg-10 col-md-10" style="justify-content: center;" *ngIf="!mail">
+        
+        <!-- Mobile Number -->
+        <div class="contactCard">
+            <img src="/assets/images/phone.jpg">
+            <p><u>+91 9177424002</u></p>
+        </div>
+
+        <!-- Mail -->
+        <div class="contactCard">
+            <img src="/assets/images/mail.jpg">
+            <p><u (click)="mailNow()">care@buddy.com</u></p>
+        </div>
+
+        <!-- Location -->
+        <div class="contactCard text-center">
+            <img src="/assets/images/location.png"
+                style="width: 175px;height: 225px;margin-left: 15px;margin-top: 5px;margin-bottom: 12px;">
+            <p><a href="https://www.google.com/maps/place/Comp+India+Infotech+Private+Limited/@13.6237022,79.4289834,17z/data=!3m1!4b1!4m5!3m4!1s0x3a4d4ba3e31dfe4b:0x7a713d7ddafc44a8!8m2!3d13.6237022!4d79.4311721" target="_blank" style="color: white;">PLR Gardens, TIRUPATI</a></p>
+        </div>
+    </div>
+    <div class="bgCard offset-md-1 offset-lg-1 col-lg-10 col-md-10">
+        <br>
+        <div class="box offset-lg-2 offset-md-2 col-lg-8 col-md-8" *ngIf="mail && input">
+            <br>
+
+            <!-- Mail Form -->
+            
+            <form [formGroup]="helpMailForm" (ngSubmit)="submit()">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input class="input" type="text" id="name" formControlName="name" required>
+                    <div class="text-danger" *ngIf="submitted && helpMailForm.controls.name.errors">
+                        <div *ngIf="helpMailForm.controls.name.errors.required">
+                            Name is required..!!
+                        </div>
+                        <div *ngIf="helpMailForm.controls.name.errors && helpMailForm.controls.name.value">
+                            eneter a valid name..!!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input class="input" type="text" id="subject" formControlName="subject" required>
+                    <div class="text-danger" *ngIf="submitted && helpMailForm.controls.subject.errors">
+                        <div *ngIf="helpMailForm.controls.subject.errors.required">
+                            Subject is required..!!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="input" type="text" id="message" formControlName="message" required style="height: 100px;"></textarea>
+                    <div class="text-danger" *ngIf="submitted && helpMailForm.controls.message.errors">
+                        <div *ngIf="helpMailForm.controls.message.errors.required">
+                            Message is required..!!
+                        </div>
+                    </div>
+                </div>
+                <div type="submit" (click)="submit()">SUBMIT</div>
+            </form>
+        </div>
+        <div class="text-center col-lg-12 col-md-12" *ngIf="!input && success" style="margin-top: 50px;">
+            <br>
+            <br>
+            <br>
+            <h3 class="text-success">
+                Your Mail has been sent successfully!!
+            </h3>
+            <h6 class="text-secondary">
+                Will try to reply it as soon as possible!!
+                <br>
+                <br>
+                Reconnecting back...
+            </h6>
+        </div>
+        
+        <div class="text-center col-lg-12 col-md-12" *ngIf="!input && !success" style="margin-top: 50px;">
+            <br>
+            <br>
+            <br>
+            <h3 class="text-danger">
+                Oops, Error!
+            </h3>
+            <h6 class="text-secondary">
+                Can't take your mail right now! Try Again after sometime..
+            </h6>
+            <br>
+            <br>
+            <button class="btn btn-success" style="width: 200px;height: 40px" (click)="tryAgain()">
+                <span>Try Again</span>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-outline-dark" style="height: 40px" (click)="home()">No, Thanks</button>
+        </div>
+    </div>
+
+</div>
