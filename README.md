@@ -1,4 +1,4 @@
-Note: Go through the "WORKING DEMO.mp4" file uploaded to see the UI design and working of this project.
+Note: Go through the "WORKING DEMO.mp4" file uploaded here, to see the UI design and working of this project.
 
 
 Abstract-
