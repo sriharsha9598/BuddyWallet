@@ -4,19 +4,21 @@ package com.wallet.buddyWallet.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 
 import com.wallet.buddyWallet.dao.WalletDao;
 import com.wallet.buddyWallet.dao.WalletDaoImpl;
 import com.wallet.buddyWallet.enitites.Account;
 import com.wallet.buddyWallet.enitites.Beneficiary;
+import com.wallet.buddyWallet.enitites.BuddyTransactions;
 import com.wallet.buddyWallet.enitites.Mails;
-import com.wallet.buddyWallet.enitites.Transactions;
 import com.wallet.buddyWallet.exceptions.AccountBlockedException;
 import com.wallet.buddyWallet.exceptions.InsufficientBalanceException;
 import com.wallet.buddyWallet.exceptions.InvalidBeneficiaryException;
@@ -34,7 +36,15 @@ public class WalletServiceImpl implements WalletService
 	@Autowired
 	WalletDao dao=new WalletDaoImpl(); 
 	
+	SimpleMailMessage mail = new SimpleMailMessage();
+
+	private JavaMailSender javaMailSender;
 	
+	@Autowired
+	public WalletServiceImpl(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
+	}
+
 	/* Method:getAllUsers
 	 * Description: Used in admin page to view all the existing account details
 	 * @param: none
@@ -46,7 +56,23 @@ public class WalletServiceImpl implements WalletService
 		return dao.getAllUsers();
 	}
 	
-	
+	@Override
+	public int verifyEmail(String email) {
+		String numbers="0123456789";
+		Random randomNumber=new Random();
+		String otp="";
+		
+		for(int i=0;i<6;i++)
+			otp+=numbers.charAt(randomNumber.nextInt(numbers.length()));
+
+		mail.setTo(email);
+		mail.setSubject("Email Verification Process");
+		mail.setText("Welcome to Buddy Family!! \n Here is your One-Time Password to allow this emailid to get linked to Buddy Wallet and further communication. \n Do not share with anyone, OTP = "+otp);
+		javaMailSender.send(mail);
+		
+		return Integer.parseInt(otp);
+
+	}
 	/* Method:createAccount
 	 * Description: Used in signup page to create a new account
 	 * @param Account: an Account object filled with new customer details
@@ -100,13 +126,14 @@ public class WalletServiceImpl implements WalletService
 		if(!account.getTranPassword().equals(tranPassword)) {
 			throw new InvalidTransactionPasswordException("Incorrect Transaction Password!!");
 		}
+		
 		try {
 		account.setTransCount(account.getTransCount()+1);
 		account.setBalance(account.getBalance()+amount);
 		int id=dao.generateTransactionId();
-		account.addTransaction(new Transactions(id,"Credit",amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
+		account.addTransaction(new BuddyTransactions(id,"Credit",amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
 		dao.updateAccount(account);
-		return ("Rs. "+amount+"/- has been successfully deposited into your account!! \r\n Transaction Id: "+id);
+		return ("Rs. "+amount+"/- has been successfully deposited into your account!! Transaction Id: "+id);
 		
 		}
 		catch(Exception e){
@@ -144,12 +171,18 @@ public class WalletServiceImpl implements WalletService
 		account.setBalance(account.getBalance()-amount);
 		//For every new transaction, generating an unique id
 		int id=dao.generateTransactionId();
-		account.addTransaction(new Transactions(id,"Debit",-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
+		account.addTransaction(new BuddyTransactions(id,"Debit",-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
 		account.setTransCount(account.getTransCount()+1);
 		//updating account balance
 		dao.updateAccount(account);
+		mail.setFrom("BuddyCare");
+		mail.setTo(account.getEmailId());
+		mail.setSubject("Withdrawal request from your wallet");
+		mail.setText("Rs. "+amount+"/- has been withdrawn from your wallet on "+LocalDate.now()+" at "+LocalTime.now());
+		javaMailSender.send(mail);
+
 		//adding new transaction
-		return ("Rs. "+amount+"/- has been successfully withdrawn from your account !! \r\n Transaction Id: "+id);
+		return ("Rs. "+amount+"/- has been successfully withdrawn from your account !! Transaction Id: "+id);
 		
 		}
 		catch(Exception e){
@@ -208,18 +241,22 @@ public class WalletServiceImpl implements WalletService
 	
 		//if message is entered, saving it in transaction string, else removing message from transaction
 		if(!message.equals("NA")) {
-			account.addTransaction(new Transactions(id1,("Transferred to "+beneficiary.getNickName()+"\n ("+message+")"),-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
-			bAccount.addTransaction(new Transactions(id1+1,("Transferred by "+account.getFirstName()+"\n ("+message+")"),amount,LocalDate.now(),LocalTime.now(),bAccount.getBalance()));
+			account.addTransaction(new BuddyTransactions(id1,("Transferred to "+beneficiary.getNickName()+"\n ("+message+")"),-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
+			bAccount.addTransaction(new BuddyTransactions(id1+1,("Transferred by "+account.getFirstName()+"\n ("+message+")"),amount,LocalDate.now(),LocalTime.now(),bAccount.getBalance()));
 		}
 		else {		
-			account.addTransaction(new Transactions(id1,("Transferred to "+beneficiary.getNickName()),-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
-			bAccount.addTransaction(new Transactions(id1+1,("Transferred by "+account.getFirstName()+" "+account.getLastName()),amount,LocalDate.now(),LocalTime.now(),bAccount.getBalance()));
+			account.addTransaction(new BuddyTransactions(id1,("Transferred to "+beneficiary.getNickName()),-amount,LocalDate.now(),LocalTime.now(),account.getBalance()));
+			bAccount.addTransaction(new BuddyTransactions(id1+1,("Transferred by "+account.getFirstName()+" "+account.getLastName()),amount,LocalDate.now(),LocalTime.now(),bAccount.getBalance()));
 		}
 		//changing balances in both accounts
 		dao.updateAccount(account);
 		dao.updateAccount(bAccount);
-		
-		return ("Rs. "+amount+"/- has been successfully transferred to "+beneficiary.getNickName()+" !! \r\n Transaction Id: "+id1);		
+		mail.setTo(account.getEmailId());
+		mail.setSubject("Funds transfered from your wallet");
+		mail.setText("Rs. "+amount+"/- has been transferred to "+beneficiary.getNickName()+"("+beneficiary.getbAccNum()+") on "+LocalDate.now()+" at "+LocalTime.now());
+		javaMailSender.send(mail);
+
+		return ("Rs. "+amount+"/- has been successfully transferred to "+beneficiary.getNickName()+" !! Transaction Id: "+id1);		
 		
 		}
 		catch(Exception e){
@@ -236,7 +273,7 @@ public class WalletServiceImpl implements WalletService
 	 * @throws ResourceNotFoundException: It is raised when no data found
 	*/	
 	@Override
-	public List<Transactions> printTransactions(long accNum) throws ResourceNotFoundException
+	public List<BuddyTransactions> printTransactions(long accNum) throws ResourceNotFoundException
 	{
 		//getting the list of all the transactions made by that account number
 		return dao.printTransactions(accNum);

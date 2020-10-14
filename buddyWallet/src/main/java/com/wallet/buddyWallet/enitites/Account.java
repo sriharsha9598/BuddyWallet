@@ -16,7 +16,8 @@ import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	@JsonIgnoreProperties({"hibenateLazyInitializer","handler"})
-    @Entity
+    
+	@Entity
 	@Table(name="Account")
 	public class Account{
 		
@@ -64,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 		private int blocked;
 		@JsonBackReference(value="transactions")
 		@OneToMany(mappedBy="account",cascade=CascadeType.ALL)
-		public List<Transactions> transactions;
+		public List<BuddyTransactions> transactions;
 		@JsonBackReference(value="beneficiaries")
 		@OneToMany(mappedBy="account",cascade=CascadeType.ALL)
 		public List<Beneficiary> beneficiaries;
@@ -194,15 +195,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 			this.blocked = blocked;
 		}
 
-		public List<Transactions> getTransactions() {
+		public List<BuddyTransactions> getTransactions() {
 			return transactions;
 		}
 
-		public void setTransactions(List<Transactions> transactions) {
+		public void setTransactions(List<BuddyTransactions> transactions) {
 			this.transactions = transactions;
 		}
 
-		public void addTransaction(Transactions transaction) {
+		public void addTransaction(BuddyTransactions transaction) {
 			transaction.setAccount(this);
 			this.getTransactions().add(transaction);
 		}

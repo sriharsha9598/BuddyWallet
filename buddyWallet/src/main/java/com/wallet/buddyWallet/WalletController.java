@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wallet.buddyWallet.enitites.Account;
 import com.wallet.buddyWallet.enitites.Beneficiary;
 import com.wallet.buddyWallet.enitites.Mails;
-import com.wallet.buddyWallet.enitites.Transactions;
+import com.wallet.buddyWallet.enitites.BuddyTransactions;
 import com.wallet.buddyWallet.exceptions.AccountBlockedException;
 import com.wallet.buddyWallet.exceptions.InsufficientBalanceException;
 import com.wallet.buddyWallet.exceptions.InvalidBeneficiaryException;
@@ -87,15 +87,15 @@ public class WalletController{
 	 * @param long: Account number into which amount is to be added
 	 * @param String: Transaction Password to verify whether transaction done by correct user or not
 	 * @param double: Amount to be deposited
-	 * @return String: A message of 'amount successfully deposited' is returned if transaction successful
+	 * @return char[]: A message of 'amount successfully deposited' is returned if transaction successful
 	 * @throws ResourceNotFoundException: It is raised when no data found
 	 * @throws UnknownErrorException: It is raised when some unexpected error or exception occurs during the process
 	 * @throws InvalidTransactionPasswordException: It is raised when an user enters an incorrect Transaction Password    
 	*/
 	@PutMapping("/deposit/{accNum}/{tranPassword}")
-	public String deposit(@PathVariable long accNum,@PathVariable String tranPassword,@RequestBody double amount) throws ResourceNotFoundException,InvalidTransactionPasswordException,UnknownErrorException
+	public char[] deposit(@PathVariable long accNum,@PathVariable String tranPassword,@RequestBody double amount) throws ResourceNotFoundException,InvalidTransactionPasswordException,UnknownErrorException
 	{
-		return service.deposit(accNum,tranPassword,amount);
+		return service.deposit(accNum,tranPassword,amount).toCharArray();
 	}
 	
 	
@@ -105,16 +105,16 @@ public class WalletController{
 	 * @param long: Account number from which amount is to be withdrawn
 	 * @param String: Transaction Password to verify whether transaction done by correct user or not
 	 * @param double: Amount to be withdrawn
-	 * @return String: A message of 'amount successfully withdrawn' is returned if transaction successful
+	 * @return char[]: A message of 'amount successfully withdrawn' is returned if transaction successful
 	 * @throws ResourceNotFoundException: It is raised when no data found
 	 * @throws UnknownErrorException: It is raised when some unexpected error or exception occurs during the process
 	 * @throws InvalidTransactionPasswordException: It is raised when an user enters an incorrect Transaction Password    
 	 * @throws InsufficientBalanceException: It is raised when user tries to withdraw money more than existing balance in wallet
     */
 	@PutMapping("/withdraw/{accNum}/{tranPassword}")
-	public String withdraw(@PathVariable long accNum,@PathVariable String tranPassword,@RequestBody double amount) throws ResourceNotFoundException,InsufficientBalanceException,InvalidTransactionPasswordException,UnknownErrorException
+	public char[] withdraw(@PathVariable long accNum,@PathVariable String tranPassword,@RequestBody double amount) throws ResourceNotFoundException,InsufficientBalanceException,InvalidTransactionPasswordException,UnknownErrorException
 	{
-		return service.withdraw(accNum,tranPassword,amount);
+		return service.withdraw(accNum,tranPassword,amount).toCharArray();
 	}
 
 	
@@ -125,7 +125,7 @@ public class WalletController{
 	 * @param String: Transaction Password to verify whether transaction done by correct user or not
 	 * @param int: BeneficiaryId to get details about beneficiary
 	 * @param double: Amount to be withdrawn
-	 * @param String: Message- a description about why that transfer is made
+	 * @param char[]: Message- a description about why that transfer is made
 	 * @return String: A message of 'amount successfully transferred' is returned if transaction successful
 	 * @throws ResourceNotFoundException: It is raised when no data found
 	 * @throws UnknownErrorException: It is raised when some unexpected error or exception occurs during the process
@@ -134,9 +134,9 @@ public class WalletController{
 	 * @throws InvalidBeneficiaryException: It is raised when user tries to transfer money to an incorrect account Number or beneficiary
 	*/
 	@PutMapping("/fundTransfer/{accNum}/{tranPassword}/{beneficiaryId}/{amount}")
-	public String fundTransfer(@PathVariable long accNum,@PathVariable String tranPassword,@PathVariable int beneficiaryId,@PathVariable double amount,@RequestBody String message) throws ResourceNotFoundException,InvalidTransactionPasswordException,InsufficientBalanceException,InvalidBeneficiaryException,UnknownErrorException
+	public char[] fundTransfer(@PathVariable long accNum,@PathVariable String tranPassword,@PathVariable int beneficiaryId,@PathVariable double amount,@RequestBody String message) throws ResourceNotFoundException,InvalidTransactionPasswordException,InsufficientBalanceException,InvalidBeneficiaryException,UnknownErrorException
 	{
-		return service.fundTransfer(accNum,tranPassword, beneficiaryId, amount, message);
+		return service.fundTransfer(accNum,tranPassword, beneficiaryId, amount, message).toCharArray();
 	}
 	
 	
@@ -148,7 +148,7 @@ public class WalletController{
 	 * @throws ResourceNotFoundException: It is raised when no data found
 	*/
 	@GetMapping("/eStatement/{accNum}")
-	public List<Transactions> eStatement(@PathVariable long accNum) throws ResourceNotFoundException
+	public List<BuddyTransactions> eStatement(@PathVariable long accNum) throws ResourceNotFoundException
 	{
 		return service.printTransactions(accNum);
 	}
@@ -263,7 +263,10 @@ public class WalletController{
 		return service.getAllMails();
 	}
 	
-	
+	@GetMapping("verifyEmail/{email}")
+	public int verifyEmail(@PathVariable String email) {
+		return service.verifyEmail(email);
+	}
 	
 	//This is for setting profile picture
 //	@PostMapping("/uploadDp/accNum")

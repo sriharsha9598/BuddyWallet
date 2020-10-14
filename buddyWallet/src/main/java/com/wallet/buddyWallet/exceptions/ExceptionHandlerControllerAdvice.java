@@ -27,11 +27,11 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
 	
 	/* Method: handleInvalidTransactionPassword
 	 *  InvalidTransactionPasswordException: It is raised when an user enters an incorrect Transaction Password
-	 *  httpResponseStatus: 403-FORBIDDEN 
+	 *  httpResponseStatus: 401-UNAUTHORIZED 
 	 *  return responseBody: error message 'Invalid Transaction Password' is returned
 	*/
 	@ExceptionHandler(InvalidTransactionPasswordException.class)
-	@ResponseStatus(value = HttpStatus.FORBIDDEN)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public @ResponseBody ExceptionResponse handleInvalidTransactionPassword(final InvalidTransactionPasswordException exception) {
 		ExceptionResponse error = new ExceptionResponse(exception.getLocalizedMessage());
 		return error;
@@ -92,11 +92,11 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
 	
 	/* Method: handleInvalidLogin
 	 *  InvalidLoginCredentialsException: It is raised when an user enters an incorrect user name or password
-	 *  httpResponseStatus: 404-NOT_FOUND 
+	 *  httpResponseStatus: 401-UNAUTHORIZED 
 	 *  return responseBody: error message 'Invalid Login Credentials!!' is returned
 	*/
     @ExceptionHandler(InvalidLoginCredentialsException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public @ResponseBody ExceptionResponse handleInvalidLogin(final InvalidLoginCredentialsException exception) {
 		ExceptionResponse error = new ExceptionResponse(exception.getLocalizedMessage());
 		return error;
